@@ -1,0 +1,277 @@
+/* Code goes here Estatísticas de Segurança */
+
+var busca = null;
+var array = ["Base DP: evolução mensal das estatísticas por circunscrição de Delegacia (1/2003 a 04/2017) <br><a href='http://www.ispdados.rj.gov.br/Arquivos/BaseDPEvolucaoMensalCisp.csv' target='_blank' class='label' data-format='csv'>CSV</a> ",
+
+"Base DP: evolução mensal das estatísticas por circunscrição de Delegacia (1/2003 a 04/2017) <br><a href='http://www.ispdados.rj.gov.br/Arquivos/ArmasApreendidasEvolucaoCisp.xlsx' target='_blank' class='label' data-format='xls'>XLS</a> <a href='http://www.ispvisualizacao.rj.gov.br/Armas.html' target='_blank' class='label' data-format='html'>HTML</a>",
+
+"Base UPP: evolução mensal das estatísticas por UPP (1/2007 a 06/2016)) <br><a href='http://www.ispdados.rj.gov.br/Arquivos/UppEvolucaoMensalDeTitulos.csv' target='_blank' class='label' data-format='csv'>CSV</a>",
+
+"Número de policiais mortos em serviço (1/1998 a 05/2017) <br><a href='http://www.ispdados.rj.gov.br/Arquivos/PoliciaisMortos1998EmDiante.csv' target='_blank' class='label' data-format='csv'>CSV</a> ",
+
+"Taxas de letalidade violenta (1991 a 2016) <br><a href='http://www.ispdados.rj.gov.br/Arquivos/SeriesHistoricasLetalidadeViolenta.xlsx' target='_blank' class='label' data-format='xls'>XLS</a> <a href='http://www.ispdados.rj.gov.br/Arquivos/SeriesHistoricasLetalidadeViolenta.pdf' target='_blank' class='label' data-format='xls'>PDF</a> ",
+
+"Consulta interativa sobre letalidade violenta <br><a href='http://www.ispvisualizacao.rj.gov.br/Letalidade.html' target='_blank' class='label' data-format='html'>HTML</a> ",
+
+"Roubos e Furtos de Bicicletas <br><a href='http://www.ispdados.rj.gov.br/RFB.html' target='_blank' class='label' data-format='html'>HTML</a> ",
+
+"Feminicídio <br><a href='http://www.ispdados.rj.gov.br/feminicidio.html' target='_blank' class='label' data-format='html'>HTML</a> ",
+
+//  Divisão Territorial da Base de Segurança
+
+"Como funciona a divisão territorial da área de segurança<br>   <a href='http://www.ispdados.rj.gov.br/Arquivos/Como funciona_a_divisao.pdf' class='label' target='_blank' data-format='pdf'>PDF</a> ",
+
+"Relação das regiões, áreas e circunscrições integradas de segurança<br> <a href='http://www.ispdados.rj.gov.br/Arquivos/RelacaodasRISP_AISP.xlsx' target='_blank' class='label' data-format='xls'>XLS</a> <a href='http://www.ispdados.rj.gov.br/Arquivos/Relacaodas RISP_AISP.pdf' class='label' target='_blank' data-format='pdf'>PDF</a>",
+
+"Correspondência entre CISP e municípios (válido desde janeiro 2011)<br> <a href='http://www.ispdados.rj.gov.br/Arquivos/CorrespondenciaCispMunicipioCod.csv' target='_blank' class='label' data-format='xls'>XLS</a>",
+
+"Bases Cartográficas Digitais - Grandes Regiões<br> <a href='http://www.ispdados.rj.gov.br/Arquivos/BasesCartograficasRegioesKML.rar' target='_blank' class='label' data-format='kml'>KML</a><a href='http://www.ispdados.rj.gov.br/Arquivos/BasesCartograficasRegioesShp.rar' target='_blank' class='label' data-format='shape'>SHAPE FILE</a> <a href='http://www.ispdados.rj.gov.br/Arquivos/BasesCartograficasRegioesJPEG.jpg' target='_blank' class='label' data-format='jpg'>JPG</a>",
+
+"Bases Cartográficas Digitais – Regiões Integradas de Segurança Pública (RISP)<br> <a href='http://www.ispdados.rj.gov.br/Arquivos/BasesCartograficasRispKML.rar' class='label' target='_blank' data-format='kml'>KML</a> <a href='http://www.ispdados.rj.gov.br/Arquivos/BasesCartograficasRispShp.rar' target='_blank' class='label' data-format='shape'>SHAPE FILE</a> <a href='http://www.ispdados.rj.gov.br/Arquivos/BasesCartograficasRispJPEG.jpg' target='_blank' class='label' data-format='jpg'>JPG</a>",
+
+"Bases Cartográficas Digitais – Áreas Integradas de Segurança Pública (AISP) <br><a href='http://www.ispdados.rj.gov.br/Arquivos/BasesCartograficasAispKML.rar' class='label' target='_blank' data-format='kml'>KML</a> <a href='http://www.ispdados.rj.gov.br/Arquivos/BasesCartograficasAispShp.rar' target='_blank' class='label' data-format='shape'>SHAPE FILE</a> <a href='http://www.ispdados.rj.gov.br/Arquivos/BasesCartograficasAispJPEG.jpg' target='_blank' class='label' data-format='jpg'>JPG</a> ",
+
+"Bases Cartográficas Digitais – Circunscrições Integradas de Segurança Pública (CISP)<br> <a href='http://www.ispdados.rj.gov.br/Arquivos/BasesCartograficasCispKML.rar' class='label' data-format='kml' target='_blank'>KML</a> <a href='http://www.ispdados.rj.gov.br/Arquivos/BasesCartograficasCispShp.rar' target='_blank' class='label' data-format='shape'>SHAPE FILE</a> <a href='http://www.ispdados.rj.gov.br/Arquivos/BasesCartograficasCispJPEG.jpg' target='_blank' class='label' data-format='jpg'>JPG</a>",
+
+/* Arquivos de Correspondência: */
+
+"Correspondência entre AISP e grandes regiões do estado ao longo do tempo <br> <a href='http://www.ispdados.rj.gov.br/Arquivos/AispPorRegiao.csv' class='label' target='_blank' data-format='csv'>CSV</a>",
+
+"Correspondência entre CISP e AISP ao longo do tempo<br><a href='http://www.ispdados.rj.gov.br/Arquivos/CorrespondenciaCispAisp.csv' target='_blank' class='label' data-format='csv'>CSV</a> ",
+
+"Correspondência entre CISP e municípios ao longo do tempo<br><a href='http://www.ispdados.rj.gov.br/Arquivos/CorrespondenciaCispMunicipioCodAoLongoDoTempo.csv' target='_blank' class='label' data-format='csv'>CSV</a> ",
+
+"Datas de modificações em CISP, AISP e grandes regiões<br><a href='http://www.ispdados.rj.gov.br/Arquivos/DesmembramentoDeCispEMudancaDeAisp.xlsx' target='_blank' class='label' data-format='csv'>CSV</a>",
+
+/* Notas Metodológicas e Dicionários */
+
+"Nota metodológica sobre estatísticas de Segurança Pública (RJ) <br> <a href='http://www.ispdados.rj.gov.br/Arquivos/MetodologiaParaDivulgacaoDosDo.pdf' target='_blank' class='label' data-format='pdf'>PDF</a>",
+
+"Metodologia para retificação de dados <br> <a href='http://www.ispdados.rj.gov.br/MetodRetifDados.html' target='_blank' class='label' data-format='html'>HTML</a>",
+
+"Metodologia para agregação de títulos criminais <br> <a href='http://www.ispdados.rj.gov.br/Arquivos/MetodologiaDeAgreagregacaoSet2015EmDiante.pdf' target='_blank' class='label' data-format='pdf'>PDF</a> <a href='http://www.ispdados.rj.gov.br/MetodologiaAgregacao.html' target='_blank' class='label' data-format='html'>HTML</a>",
+
+"Metodologia para dados de UPP <br> <a href='http://www.ispdados.rj.gov.br/Arquivos/MetodologiaParaDadosDeUpp.pdf' target='_blank' class='label' data-format='pdf'>PDF</a><a href='http://www.ispdados.rj.gov.br/metodologiaDadosUpp.html' target='_blank' class='label' data-format='html'>HTML</a>",
+
+"Base DP: dicionário de variáveis <br> <a href='http://www.ispdados.rj.gov.br/Arquivos/BaseDpDicionarioDeVariaveis.xlsx' target='_blank' class='label' data-format='xls'>XLS</a>",
+
+"Séries históricas do estado por mês desde 1991: dicionário de variáveis <br> <a href='http://www.ispdados.rj.gov.br/Arquivos/DicionarioVariaveisDOMensalEstadoDesde1991.xls' class='label' target='_blank' data-format='xls'>XLS</a>",
+
+"Base UPP: dicionário de variáveis<br> <a href='http://www.ispdados.rj.gov.br/Arquivos/BaseUppDicionarioDeVariaveis.xlsx' class='label' target='_blank' data-format='xls'>XLS</a>",
+
+"Metodologia para cálculo de população<br> <a href='http://www.ispdados.rj.gov.br/metodologiaCalPopulacao.html' class='label' target='_blank' data-format='html'>HTML</a> <a href='http://www.ispdados.rj.gov.br/Arquivos/CalculodePopulaçaoMetodologia.pdf' class='label' target='_blank' data-format='pdf'>PDF</a>",
+
+"Feminicídio: Nota Explicativa<br> <a href='http://www.ispdados.rj.gov.br/feminicidio_Nota.html' class='label' target='_blank' data-format='html'>HTML</a> <a href='http://www.ispdados.rj.gov.br/Arquivos/FeminicídioNotaExplicativa.pdf' class='label' target='_blank' data-format='pdf'>PDF</a>",
+
+
+ 
+/* Informações Institucionais */
+ 
+ "Secretários de Segurança <br><a href='http://www.ispdados.rj.gov.br/Arquivos/SecretarioDeSeguranca.csv' target='_blank' class='label' data-format='csv'>CSV</a>",
+
+"Comandantes Gerais da PM <br><a href='http://www.ispdados.rj.gov.br/Arquivos/ComandanteGeral.csv' target='_blank' class='label' data-format='csv'>CSV</a>",
+
+"Chefes de Polícia Civil  <br><a href='http://www.ispdados.rj.gov.br/Arquivos/ChefeDePolicia.csv' target='_blank' class='label' data-format='csv'>CSV</a>",
+
+/*faltanto preparar o arquivo
+
+"Comandantes de Policiamento de Área <br><a href='' class='label' target='_blank' data-format=''></a>",
+
+"Chefes de Departamento de Polícia de Área <br><a href='' class='label' target='_blank' data-format=''></a>",*/
+
+"Comandantes de Batalhões de área <br><a href='http://www.ispdados.rj.gov.br/Arquivos/ComandantesBatalhao.csv' target='_blank' class='label' data-format='csv'>CSV</a>",
+
+/*faltanto preparar o arquivo
+"Comandantes de unidades especiais da PM <a href='' class='label' target='_blank' data-format=''></a>",*/
+
+"Delegados titulares de Delegacias Distritais <br><a href='http://www.ispdados.rj.gov.br/Arquivos/DelegadosDp.csv' target='_blank' class='label' data-format='csv'>CSV</a>",
+
+/*faltanto preparar o arquivo
+"Delegados de unidades especiais <br> <a href='' class='label' target='_blank' data-format=''></a>",*/
+
+/*faltanto preparar o arquivo
+"Comandantes da Coordenadoria de Polícia Pacificadora <br> <a href='' class='label' target='_blank' data-format=''></a>",*/
+
+"Data de transformação das DP em Delegacias Legais <br><a href='http://www.ispdados.rj.gov.br/Arquivos/DataDeCriacaoDasDelegaciasLegais.csv' class='label' target='_blank' data-format='csv'>CSV</a>",
+
+"UPP: datas de ocupação e instalação, e delegacias relacionadas <br><a href='http://www.ispdados.rj.gov.br/Arquivos/UppDatasDeOcupacaoeInstalacao.xlsx' class='label' target='_blank' data-format='csv'>CSV</a>",
+
+
+/* População: */
+
+"População: evolução mensal por circunscrição de Delegacia <br><a href='http://www.ispdados.rj.gov.br/Arquivos/PopulacaoEvolucaoMensalCisp.xls' target='_blank' class='label' data-format='csv'>XLS</a>",
+
+"População: evolução mensal por circunscrição de Delegacia<br><a href='http://www.ispdados.rj.gov.br/Arquivos/PopulacaoEvolucaoAnualCisp.xlsx' target='_blank' class='label' data-format='xls'>XLS</a>",
+
+"População mensal por município <br><a href='http://www.ispdados.rj.gov.br/Arquivos/PopulacaoEvolucaoMensalMunic.csv' class='label' target='_blank' data-format='csv'>CSV</a>",
+
+"População anual por município <br><a href='http://www.ispdados.rj.gov.br/Arquivos/PopulacaoEvolucaoAnuaMunic.csv' class='label' target='_blank' data-format='csv'>CSV</a>",
+
+
+"População: residente por UPP (2010)<br><a href='http://www.ispdados.rj.gov.br/Arquivos/PopulacaoResidenteUpp2010.xlsx' target='_blank' class='label' data-format='xls'>XLS</a>",
+
+"População: projeção anual para Estado, capital e total das UPP  <br><a href='http://www.ispdados.rj.gov.br/Arquivos/PopulacaoProjecaoUpp.xlsx' target='_blank' class='label' data-format='xls'>XLS</a>",
+
+"Metodologia para cálculo de população  <br><a href='http://www.ispdados.rj.gov.br/metodologiaCalPopulacao.html' target='_blank' class='label' data-format='html'>HTML</a> <a href='http://www.ispdados.rj.gov.br/Arquivos/CalculodePopulaçaoMetodologia.pdf' target='_blank' class='label' data-format='pdf'>PDF</a>",
+
+
+
+
+/* Divisão por temas */
+
+
+/* Imnformações Gerais de Segurança */
+
+"Nota metodológica sobre estatísticas de Segurança Pública (RJ) <br> <a href='http://www.ispdados.rj.gov.br/metodDivulDados.html' target='_blank' class='label' data-format='html'>HTML</a><a href='http://www.ispdados.rj.gov.br/Arquivos/MetodologiaParaDivulgacaoDosDo.pdf' target='_blank' class='label' data-format='pdf'>PDF</a>",
+
+"Metodologia para agregação de títulos criminais <br><a href='http://www.ispdados.rj.gov.br/MetodologiaAgregacao.html' target='_blank' class='label' data-format='html'>HTML</a> <a href='http://www.ispdados.rj.gov.br/Arquivos/MetodologiaDeAgreagregacaoSet2015EmDiante.pdf' target='_blank' class='label' data-format='pdf'>PDF</a>",
+
+"Metodologia para retificação de dados br><a href='http://www.ispdados.rj.gov.br/MetodRetifDados.html' target='_blank' class='label' data-format='html'>HTML</a>",
+
+"Base DP: dicionário de variáveis <br><a href='http://www.ispdados.rj.gov.br/Arquivos/BaseDpDicionarioDeVariaveis.xlsx' class='label' target='_blank' data-format='xls'>XLS</a>",
+
+"Base DP: evolução mensal das estatísticas por circunscrição de Delegacia (1/2003 a 06/2017)<br><a href='http://www.ispdados.rj.gov.br/Arquivos/BaseDPEvolucaoMensalCisp.csv' target='_blank' class='label' data-format='csv'>CSV</a> ",
+
+
+"Séries históricas do estado por mês desde 1991: dicionário de variáveis<br><a href='http://www.ispdados.rj.gov.br/Arquivos/DicionarioVariaveisDOMensalEstadoDesde1991.xls' target='_blank' class='label' data-format='xls'>XLS</a> ",
+
+"Séries históricas do estado por mês desde 1991<br><a href='http://www.ispdados.rj.gov.br/Arquivos/DOMensalEstadoDesde1991.csv' target='_blank' class='label' data-format='csv'>CSV</a> ",
+
+"Roubos e Furtos de Bicicletas<br><a href='http://www.ispdados.rj.gov.br/RFB.html?ident=102' target='_blank' class='label' data-format='html'>HTML</a> ",
+
+
+
+
+
+ /* Crimes contra a vida */
+
+"Taxas de letalidade violenta (1991 a 2016)<br><a href='http://www.ispdados.rj.gov.br/Arquivos/SeriesHistoricasLetalidadeViolenta.xlsx' class='label' target='_blank' data-format='xls'>XLS</a> <a href='http://www.ispdados.rj.gov.br/Arquivos/SeriesHistoricasLetalidadeViolenta.pdf' class='label' target='_blank' data-format='pdf'>PDF</a>",
+
+"Consulta interativa sobre letalidade violenta<br> <a href='http://www.ispvisualizacao.rj.gov.br/Letalidade.html' class='label' target='_blank' data-format='csv'>CSV</a>",
+
+"Número de policiais mortos em serviço (1/1998 a 06/2017)<br> <a href='http://www.ispdados.rj.gov.br/Arquivos/PoliciaisMortos1998EmDiante.csv' class='label' target='_blank' data-format='csv'>CSV</a>",
+
+"Feminicídio: Nota Explicativa <br><a href='http://www.ispdados.rj.gov.br/feminicidio_Nota.html' class='label' target='_blank' data-format='html'>HTML</a> <a href='http://www.ispdados.rj.gov.br/Arquivos/FeminicídioNotaExplicativa.pdf' class='label' target='_blank' data-format='pdf'>PDF</a>",
+
+"Feminicídio<br> <a href='http://www.ispdados.rj.gov.br/feminicidio.html' class='label' target='_blank' data-format='html'>HTML</a>",
+
+"Taxa de elucidação de letalidade<br> <a href='http://www.ispdados.rj.gov.br/elucidacao.html' class='label' target='_blank' data-format='html'>HTML</a>",
+
+
+
+ /* UPP */
+
+"Metodologia para dados de UPP<br> <a href='http://www.ispdados.rj.gov.br/metodologiaDadosUpp.html' target='_blank' class='label' data-format='html'>HTML</a> <a href='http://www.ispdados.rj.gov.br/Arquivos/MetodologiaParaDadosDeUpp.pdf' target='_blank' class='label' data-format='pdf'>PDF</a>",
+
+"Base UPP: dicionário de variáveis <br><a href='http://www.ispdados.rj.gov.br/Arquivos/BaseDpDicionarioDeVariaveis.xlsx' class='label' data-format='' target='_blank'>xls</a>",
+
+"UPP: evolução mensal dos títulos por UPP (1/2007 a 6/2016) <br><a href='http://www.ispdados.rj.gov.br/Arquivos/UppEvolucaoMensalDeTitulos.csv' target='_blank' class='label' data-format='csv'>CSV</a>",
+
+"População: residente por UPP (2010) <br><a href='http://www.ispdados.rj.gov.br/Arquivos/PopulacaoResidenteUpp2010.xlsx' class='label' target='_blank' data-format='xls'>XLS</a>",
+
+"População: projeção anual para Estado, capital e total das UPP<br><a href='http://www.ispdados.rj.gov.br/Arquivos/PopulacaoProjecaoUpp.xlsx' target='_blank' class='label' data-format='xls'>XLS</a>",
+
+
+/* Já esta em Informações Institucionais
+"UPP: datas de ocupação e instalação, e delegacias relacionadas <br><a href='http://www.ispdados.rj.gov.br/Arquivos/UppDatasDeOcupacaoeInstalacao.xlsx' class='label' target='_blank' data-format='csv'>CSV</a>",
+*/
+
+ /* ARMAS */
+
+"Armas: evolução mensal de armas apreendidas por circunscrição de Delegacia (1/2007 a 06/2017) <br><a href='http://www.ispdados.rj.gov.br/Arquivos/ArmasApreendidasEvolucaoCisp.xlsx' target='_blank' class='label' data-format='xls'>XLS</a> <a href='http://www.ispvisualizacao.rj.gov.br/Armas.html' target='_blank' class='label' data-format='html'>XHTML</a>",
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ /* Consulta a resumos, análises e séries históricas 
+
+"Consulta a dados oficiais por mês por AISP <br><a href='http://www.isp.rj.gov.br/dadosoficiais.asp' class='label' target='_blank' data-format='html'>LINK</a>",
+
+"Consulta a dados oficiais por mês por UPP <br><a href='http://www.isp.rj.gov.br/Conteudo.asp?ident=61' class='label' target='_blank' data-format='html'>LINK</a>",
+
+/*faltanto preparar o arquivo
+"Resumo mensal dos indicadores <br><a href='' class='label' data-format=''></a> ",   
+
+"Séries históricas de letalidade violenta (1991 a 2015) <br><a href='http://www.ispdados.rj.gov.br/Arquivos/SeriesHistoricasLetalidadeViolenta.xlsx' target='_blank' class='label' data-format='xls'>XLS</a> <a href='http://www.ispdados.rj.gov.br/Arquivos/SeriesHistoricasLetalidadeViolenta.pdf' target='_blank' class='label' data-format='pdf'>PDF</a>",
+
+"Taxa de elucidação de crimes <br><a href='http://www.isp.rj.gov.br/Conteudo.asp?ident=102' class='label' target='_blank' data-format='html'>LINK</a>",
+
+"Roubos e furtos de bicicleta<br><a href='http://www.isp.rj.gov.br/Conteudo.asp?ident=134' class='label' target='_blank' data-format='html'>LINK</a> ",
+
+ /* Informações Auxiliares 
+
+"UPP: informações gerais  <br><a href='http://www.ispdados.rj.gov.br/Arquivos/UppInformacoesGerais.xlsx' target='_blank' class='label' data-format='xls'>XLS</a> ",*/
+
+
+
+
+
+ 
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+"",
+
+""] ;
+
+$(document).ready(function(){
+  $('.search').bind('input',function(){
+    busca = $(this).val().toLowerCase();
+    
+    if(busca !== ''){
+      var corresponde = false;
+      var saida = Array();
+      var quantidade = 0;
+      for(var key in array){
+        
+        corresponde = array[key].toLowerCase().indexOf(busca) >= 0;
+        if(corresponde){
+          saida.push(array[key]);
+          quantidade += 1;
+        }
+      }
+      if(quantidade){
+        $('#saidaTxt').text('');
+        $('#quantidade').html(quantidade+' resultados!<br><br>');
+        for(var ind in saida){
+           $('#saidaTxt').append("<li>"+saida[ind]+"</li>"+"<br>");
+        }
+        
+      }else{
+        $('#quantidade').html('');
+        $('#saidaTxt').text('Nenhum resultado...');
+      }
+    
+    }else{
+      $('#quantidade').html('');
+      $('#saidaTxt').text('Nenhum resultado...');
+    }
+    
+    
+    
+  });
+});
+
